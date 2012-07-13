@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ExceptionalServiceService" targetNamespace="http://jaxwsservice.gillan.ca/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://jaxwsservice.gillan.ca/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://jaxwsservice.gillan.ca/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://jaxwsservice.gillan.ca/">
+  <xs:element name="doSomethingExceptional" type="tns:doSomethingExceptional"/>
+  <xs:element name="doSomethingExceptionalResponse" type="tns:doSomethingExceptionalResponse"/>
+  <xs:complexType name="doSomethingExceptional">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="doSomethingExceptionalResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExceptionalException" type="tns:ExceptionalException"/>
+  <xs:complexType name="ExceptionalException">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="doSomethingExceptional">
+    <wsdl:part name="parameters" element="tns:doSomethingExceptional">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ExceptionalException">
+    <wsdl:part name="ExceptionalException" element="tns:ExceptionalException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="doSomethingExceptionalResponse">
+    <wsdl:part name="parameters" element="tns:doSomethingExceptionalResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ExceptionalService">
+    <wsdl:operation name="doSomethingExceptional">
+      <wsdl:input name="doSomethingExceptional" message="tns:doSomethingExceptional">
+    </wsdl:input>
+      <wsdl:output name="doSomethingExceptionalResponse" message="tns:doSomethingExceptionalResponse">
+    </wsdl:output>
+      <wsdl:fault name="ExceptionalException" message="tns:ExceptionalException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ExceptionalServiceServiceSoapBinding" type="tns:ExceptionalService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="doSomethingExceptional">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="doSomethingExceptional">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="doSomethingExceptionalResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ExceptionalException">
+        <soap:fault name="ExceptionalException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ExceptionalServiceService">
+    <wsdl:port name="ExceptionalServicePort" binding="tns:ExceptionalServiceServiceSoapBinding">
+      <soap:address location="http://localhost:9090/ExceptionalServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
